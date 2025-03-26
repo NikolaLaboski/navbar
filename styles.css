@@ -1,31 +1,31 @@
-/*
-=============== 
-Modernized Styles for Navbar
-===============
-*/
-
-/* Import Fonts */
+/* ======== Global Styles ======== */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
-/* Variables */
+/* ======== Root Variables ======== */
 :root {
+    /* Primary color scheme */
     --clr-primary: #4a90e2;
     --clr-primary-dark: #357ab7;
     --clr-primary-light: #b3d4fc;
-    --clr-background: #f0f4f8;
+    --clr-primary-bg: #f0f8ff;
 
+    /* Neutral colors */
     --clr-black: #222;
     --clr-white: #fff;
-    --clr-grey: #6b7280;
+    --clr-grey-dark: #444;
     --clr-grey-light: #d3d3d3;
+    --clr-grey-bg: #f9f9f9;
 
+    /* Typography */
     --ff-primary: "Inter", sans-serif;
     --transition: all 0.3s ease-in-out;
     --border-radius: 8px;
 }
 
-/* Global Styles */
-* {
+/* Resetting default styles */
+*,
+::after,
+::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -33,11 +33,16 @@ Modernized Styles for Navbar
 
 body {
     font-family: var(--ff-primary);
-    background: var(--clr-background);
-    color: var(--clr-black);
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    /* Background gradient */
+    color: var(--clr-white);
     line-height: 1.6;
     font-size: 1rem;
-    transition: background 0.3s ease-in-out;
+}
+
+/* Styling unordered lists */
+ul {
+    list-style: none;
 }
 
 a {
@@ -45,42 +50,70 @@ a {
     color: inherit;
 }
 
-ul {
-    list-style: none;
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
-/* Navbar */
+p {
+    margin-bottom: 1rem;
+    color: var(--clr-white);
+}
+
+/* Responsive typography adjustments */
+@media screen and (min-width: 800px) {
+    body {
+        font-size: 1.1rem;
+    }
+}
+
+/* ======== Navbar Styles ======== */
 nav {
-    background: var(--clr-primary);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #4a90e2, #357ab7);
+    /* Diagonal gradient from light blue to dark blue */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for better visibility */
     padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    transition: var(--transition);
+    transition: background-color 0.3s ease-in-out;
+    /* Smooth background color transition */
 }
 
-/* Navbar Container */
+/* Main container for navbar */
 .nav-center {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
-/* Logo */
+/* Navbar header with logo and toggle button */
+.nav-header {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo styling */
 .logo {
     height: 50px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    /* Inverts the logo color to make it white */
     transition: transform 0.3s ease-in-out;
+    /* Smooth scale-up on hover */
 }
 
+/* Logo hover effect */
 .logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    /* Slightly enlarge logo on hover */
 }
 
-/* Navbar Toggle */
+/* Navbar toggle button (Hamburger icon) */
 .nav-toggle {
     font-size: 2rem;
     background: transparent;
@@ -90,12 +123,14 @@ nav {
     color: var(--clr-white);
 }
 
+/* Navbar toggle hover effect */
 .nav-toggle:hover {
     color: var(--clr-primary-light);
     transform: rotate(90deg);
+    /* Rotate on hover */
 }
 
-/* Navbar Links */
+/* Navbar links */
 .links {
     display: none;
 }
@@ -103,63 +138,48 @@ nav {
 .show-links {
     display: block;
     text-align: center;
-    animation: fadeIn 0.3s ease-in-out;
 }
 
 .links a {
     display: block;
     padding: 1rem;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1rem;
     text-transform: capitalize;
-    transition: var(--transition);
+    transition: all 0.3s ease-in-out;
     border-radius: var(--border-radius);
     color: var(--clr-white);
 }
 
+/* Links hover effect */
 .links a:hover {
     background: rgba(255, 255, 255, 0.2);
+    /* Light background effect on hover */
 }
 
-/* Social Icons */
+/* Social media icons */
 .social-icons {
     display: none;
 }
 
 @media screen and (min-width: 800px) {
+
+    /* Navbar toggle visibility on larger screens */
     .nav-toggle {
         display: none;
     }
 
+    /* Display links horizontally on larger screens */
     .links {
         display: flex;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .links a {
         padding: 0.5rem 1rem;
         font-size: 1rem;
-        position: relative;
     }
 
-    /* Animated underline effect */
-    .links a::after {
-        content: "";
-        display: block;
-        height: 3px;
-        width: 100%;
-        background: var(--clr-primary-light);
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        transform: scaleX(0);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .links a:hover::after {
-        transform: scaleX(1);
-    }
-
+    /* Social icons displayed horizontally on larger screens */
     .social-icons {
         display: flex;
         gap: 1rem;
@@ -168,24 +188,11 @@ nav {
     .social-icons a {
         font-size: 1.5rem;
         color: var(--clr-white);
-        transition: var(--transition);
+        transition: all 0.3s ease-in-out;
     }
 
+    /* Hover effect for social icons */
     .social-icons a:hover {
         color: var(--clr-grey-light);
-        transform: scale(1.1);
-    }
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
