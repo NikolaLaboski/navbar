@@ -1,43 +1,31 @@
 /*
 =============== 
-Fonts
+Modernized Styles for Navbar
 ===============
 */
+
+/* Import Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
-/*
-=============== 
-Variables
-===============
-*/
+/* Variables */
 :root {
-    /* Primary color scheme */
     --clr-primary: #4a90e2;
     --clr-primary-dark: #357ab7;
     --clr-primary-light: #b3d4fc;
-    --clr-primary-bg: #f0f8ff;
+    --clr-background: #f0f4f8;
 
-    /* Neutral colors */
     --clr-black: #222;
     --clr-white: #fff;
-    --clr-grey-dark: #444;
+    --clr-grey: #6b7280;
     --clr-grey-light: #d3d3d3;
-    --clr-grey-bg: #f9f9f9;
 
-    /* Typography */
     --ff-primary: "Inter", sans-serif;
     --transition: all 0.3s ease-in-out;
     --border-radius: 8px;
 }
 
-/*
-=============== 
-Global Styles
-===============
-*/
-*,
-::after,
-::before {
+/* Global Styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -45,15 +33,11 @@ Global Styles
 
 body {
     font-family: var(--ff-primary);
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    /* Modern gradient */
-    color: var(--clr-white);
+    background: var(--clr-background);
+    color: var(--clr-black);
     line-height: 1.6;
     font-size: 1rem;
-}
-
-ul {
-    list-style: none;
+    transition: background 0.3s ease-in-out;
 }
 
 a {
@@ -61,53 +45,39 @@ a {
     color: inherit;
 }
 
-h1,
-h2,
-h3,
-h4 {
-    font-weight: 700;
-    margin-bottom: 1rem;
+ul {
+    list-style: none;
 }
 
-p {
-    margin-bottom: 1rem;
-    color: var(--clr-white);
-}
-
-@media screen and (min-width: 800px) {
-    body {
-        font-size: 1.1rem;
-    }
-}
-
-/*
-=============== 
-Navbar
-===============
-*/
+/* Navbar */
 nav {
-    background: linear-gradient(to right, #4a90e2, #357ab7);
-    /* Stylish gradient! */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: var(--clr-primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: var(--transition);
 }
 
+/* Navbar Container */
 .nav-center {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
-.nav-header {
-    display: flex;
-    align-items: center;
-}
-
+/* Logo */
 .logo {
     height: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 /* Navbar Toggle */
@@ -125,7 +95,7 @@ nav {
     transform: rotate(90deg);
 }
 
-/* Links */
+/* Navbar Links */
 .links {
     display: none;
 }
@@ -133,22 +103,22 @@ nav {
 .show-links {
     display: block;
     text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .links a {
     display: block;
     padding: 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-transform: capitalize;
     transition: var(--transition);
     border-radius: var(--border-radius);
     color: var(--clr-white);
-    /* Ensuring visibility */
 }
 
 .links a:hover {
     background: rgba(255, 255, 255, 0.2);
-    /* Subtle hover effect */
 }
 
 /* Social Icons */
@@ -163,12 +133,31 @@ nav {
 
     .links {
         display: flex;
-        gap: 1rem;
+        gap: 1.5rem;
     }
 
     .links a {
         padding: 0.5rem 1rem;
         font-size: 1rem;
+        position: relative;
+    }
+
+    /* Animated underline effect */
+    .links a::after {
+        content: "";
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: var(--clr-primary-light);
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .links a:hover::after {
+        transform: scaleX(1);
     }
 
     .social-icons {
@@ -179,11 +168,24 @@ nav {
     .social-icons a {
         font-size: 1.5rem;
         color: var(--clr-white);
-        /* Ensuring visibility */
         transition: var(--transition);
     }
 
     .social-icons a:hover {
         color: var(--clr-grey-light);
+        transform: scale(1.1);
+    }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
