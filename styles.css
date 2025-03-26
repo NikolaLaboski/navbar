@@ -87,7 +87,7 @@ Navbar
 */
 nav {
     background: linear-gradient(to right, #4a90e2, #357ab7);
-    /* Stylish gradient */
+    /* Stylish gradient! */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 1rem 0;
 }
